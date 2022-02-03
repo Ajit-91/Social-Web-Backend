@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require("cors")
 const app = express();
 const mongoose = require('mongoose');
+const PORT = process.env.PORT || 3001
 
 mongoose.connect(process.env.DB_CONNECTION).then(()=>{
     console.log("connection succesfull ");
@@ -22,6 +23,6 @@ app.get("/", (req, res)=>{
     res.send("Welcome to Social Web API")
 })
 
-app.listen(process.env.PORT, () => {
-    console.log("server started at port "+process.env.PORT);
+app.listen(PORT, () => {
+    console.log("server started at port "+PORT);
 })
