@@ -16,7 +16,9 @@ app.use("/Uploads", express.static(__dirname+"/Uploads"))
 app.use(require("./Routes/authRoutes"))
 app.use(require("./Routes/postRoutes"))
 
-
+app.get("/", (req, res)=>{
+    res.send("Welcome to Social Web API")
+})
 
 app.listen(process.env.PORT, () => {
     console.log("server started at port "+process.env.PORT);
