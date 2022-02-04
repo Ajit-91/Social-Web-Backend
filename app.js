@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
-app.use("/Uploads", express.static(__dirname+"/Uploads"))
 
 app.use(require("./Routes/authRoutes"))
 app.use(require("./Routes/postRoutes"))

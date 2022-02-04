@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require("../Models/userSchema")
+const cloudinary = require('../Helpers/cloudinary')
+
 
 // ========Function to register a user====================
 
@@ -132,9 +134,10 @@ const updateProfile = async (req, res)=>{
         let update = {}
 
         if(file){
+            const result = await cloudinary.uploader.upload(file.path)
              update = {
                 ...body,
-                profileImg : `${process.env.BASE_URL}/profileImgs/${file.filename}`
+                profileImg : result.secure_url
             }
         }else{
             update = {

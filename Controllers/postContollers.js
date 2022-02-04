@@ -1,5 +1,6 @@
 const User = require("../Models/userSchema")
 const Post = require("../Models/postSchema")
+const cloudinary = require('../Helpers/cloudinary')
 
 // =================Function to Create Post==========================
 const createPost = async (req, res) => {
@@ -14,9 +15,11 @@ const createPost = async (req, res) => {
 
         let postDetails = {}
         if(postImg){
+            const result = await cloudinary.uploader.upload(postImg.path)
+
             postDetails = {
                 creator : creator._id,
-                postImg : `${process.env.BASE_URL}/postImgs/${postImg.filename}`,
+                postImg : result.secure_url,
                 ...description
             }
         }else{
